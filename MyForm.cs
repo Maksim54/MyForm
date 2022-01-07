@@ -13,6 +13,8 @@ namespace MyVorm
         Button[] btn = new Button[4];
         string[] texts = new string[4];
         TableLayoutPanel tlp = new TableLayoutPanel();
+        Button btn_tabel;
+        int btn_w, btn_h;
         public MyForm()
         {}
         public MyForm(string title, string body, string button1, string button2, string button3, string button4)
@@ -47,26 +49,33 @@ namespace MyVorm
             this.tlp.RowCount = read;
             this.tlp.ColumnStyles.Clear();
             this.tlp.RowStyles.Clear();
-            for (int i = 0; i < read; i++)
+            int i, j;
+            for (i = 0; i < read; i++)
             {
-                this.tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 100 / read));
+                this.tlp.RowStyles.Add(new RowStyle(SizeType.Percent, 100/read));
             }
-            for (int i = 0; i < kohad; i++)
+            for (i = 0; i < kohad; i++)
             {
-                this.tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100 / kohad));
+                this.tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100/kohad));
             }
-            for (int i = 0; i < read; i++)
+            this.Size = new System.Drawing.Size(kohad * 100, read * 100);
+            for (int r = 0; r < read; r++)
             {
-                for (int j = 0; j < kohad; j++)
+                for (int k = 0; k < kohad; k++)
                 {
-                    var btn_tabel = new Button
+                    btn_tabel = new Button
                     {
-                        Text = String.Format($"{i}{j}"),
-                        Name = String.Format($"btn_{i}{j}")
+                        Text = String.Format($"{r+1}{k+1}"),
+                        Name = String.Format($"btn_{r}{k}"),
+                        Dock = DockStyle.Fill
                     };
-                    this.tlp.Controls.Add(btn_tabel,i,j);
+                    this.tlp.Controls.Add(btn_tabel,k,r);
                 }
             }
+            //btn_w = (int)(100 / kohad);
+            //btn_h = (int)(100 / read);
+            this.tlp.Dock = DockStyle.Fill;
+            //this.tlp.Size = new System.Drawing.Size(tlp.ColumnCount*btn_w*3,tlp.RowCount * btn_h*2);
             this.Controls.Add(tlp);
             
         }

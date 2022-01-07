@@ -29,7 +29,7 @@ namespace MyVorm
 
         private void Start_btn_2_Click(object sender, EventArgs e)
         {
-            MyForm uus_aken = new MyForm(5,8);
+            MyForm uus_aken = new MyForm(8, 11);
             uus_aken.StartPosition = FormStartPosition.CenterScreen;
             uus_aken.ShowDialog();
         }
